@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today's Learning Activity</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="card">
+                <h1><span class="date"></span> Learning Activity</h1>
+                <p class="fact-text"></p>
+                <p class="extra-text"></p>
+                <p class="subject-text"></p>
+            </div>
+            <button class="randomize-btn">
+                <i class="fas fa-sync-alt"></i>
+                Randomize
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const subjectColors = {
+            math: "#4361EE",      // Blue
+            colors: "#FF6B6B",    // Coral
+            science: "#4CAF50",   // Green
+            social: "#9B5DE5",    // Purple
+            language: "#F15BB5"   // Pink
+        };
+
+        const facts = [
+            {
+                "fact": "Count steps while walking up stairs",
+                "subject": "math",
+                "extra": "This helps with number sequence and counting. Try counting backwards or counting by twos for an extra challenge!"
+            },
+            {
+                "fact": "Name the colors of fruits while eating them",
+                "subject": "colors",
+                "extra": "Extend this by sorting fruits by color, or finding other objects around the house with matching colors."
+            },
+            {
+                "fact": "Watch plants grow and talk about what they need",
+                "subject": "science",
+                "extra": "Try growing different plants and compare their growth rates. Talk about why some grow faster than others."
+            },
+            {
+                "fact": "Practice saying 'please' and 'thank you'",
+                "subject": "social",
+                "extra": "Role-play different scenarios where these words are used. Add 'excuse me' and 'you're welcome' to expand vocabulary."
+            },
+            {
+                "fact": "Sort toys by size - big and small",
+                "subject": "math",
+                "extra": "Create a line from smallest to biggest. Introduce medium-sized objects to teach comparative words."
+            },
+            {
+                "fact": "Make animal sounds and name the animals",
+                "subject": "language",
+                "extra": "Add where the animals live or what they eat. Create simple stories about the animals."
+            }
+        ];
+
+        function getDayOfYear() {
+            const now = new Date();
+            const start = new Date(now.getFullYear(), 0, 0);
+            const diff = now - start;
+            const oneDay = 1000 * 60 * 60 * 24;
+            return Math.floor(diff / oneDay);
+        }
+
+        function loadFact() {
+            const now = new Date();
+            const options = { month: 'short', day: 'numeric' };
+            const dateStr = now.toLocaleDateString('en-US', options);
+            document.querySelector('.date').textContent = dateStr;
+            
+            const dayOfYear = getDayOfYear();
+            const factIndex = dayOfYear % facts.length;
+            const todaysFact = facts[factIndex];
+            const color = subjectColors[todaysFact.subject] || "#333333";
+            
+            document.querySelector('.fact-text').textContent = todaysFact.fact;
+            document.querySelector('.extra-text').textContent = todaysFact.extra;
+            document.querySelector('.subject-text').textContent = 
+                todaysFact.subject.charAt(0).toUpperCase() + todaysFact.subject.slice(1);
+            document.querySelector('.card').style.borderColor = color;
+        }
+
+        document.querySelector('.randomize-btn').onclick = function() {
+            const randomFact = facts[Math.floor(Math.random() * facts.length)];
+            const color = subjectColors[randomFact.subject] || "#333333";
+            
+            document.querySelector('.date').textContent = "Random";
+            document.querySelector('.fact-text').textContent = randomFact.fact;
+            document.querySelector('.extra-text').textContent = randomFact.extra;
+            document.querySelector('.subject-text').textContent = 
+                randomFact.subject.charAt(0).toUpperCase() + randomFact.subject.slice(1);
+            document.querySelector('.card').style.borderColor = color;
+        };
+
+        window.addEventListener('load', loadFact);
+    </script>
+</body>
+</html> 

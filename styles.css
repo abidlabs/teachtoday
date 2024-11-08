@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+    background-color: #F7F7F7;
+    min-height: 100vh;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    max-width: 500px;
+    width: 90%;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 8px solid #4361EE;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.fact-text {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 1rem;
+    padding: 1rem 0rem;
+}
+
+.extra-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+    font-family: 'Arial', sans-serif;
+}
+
+.subject-text {
+    font-size: 1rem;
+    color: #666;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.randomize-btn {
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    background: #4361EE;
+    color: white;
+    cursor: pointer;
+    transform: translateY(-4px);
+    box-shadow: 0 4px 0 #2941c9;
+    transition: all 0.1s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.randomize-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 0 #2941c9;
+}
+
+.randomize-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 0 0 #2941c9;
+}
+
+.randomize-btn i {
+    font-size: 1.2rem;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.randomize-btn:active i {
+    animation: spin 0.5s ease-in-out;
+}
